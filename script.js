@@ -60,7 +60,7 @@ function createElementPlantContainer() {
             <p class="text-sm mb-2">${plant.description}</p>
             <div class="flex justify-between mb-2">
               <span class="text-[12px] bg-[#dcfce7] text-[#000000] p-0.4 px-1.5 rounded-2xl">${plant.category}</span>
-              <span class="text-[12px] font-bold">${plant.price}</span>            
+              <span class="text-[12px] font-bold">৳${plant.price}</span>            
             </div>
             <button onClick="ClickCart(${plant.id})" class="btn rounded-4xl btn-secondary bg-[#15803d]">Add to Cart</button>
           </div>
@@ -113,7 +113,7 @@ loadData(categoriesApi).then((data) => {
                       <p class="text-sm mb-2">${plant.description}</p>
                       <div class="flex justify-between mb-2">
                         <span class="text-[12px] bg-[#dcfce7] p-0.4 px-1.5 text-[#15803d] rounded-2xl">${plant.category}</span>
-                        <span class="text-[12px] font-bold">${plant.price}</span>            
+                        <span class="text-[12px] font-bold">৳${plant.price}</span>            
                       </div>
                       <button  onClick="ClickCart(${plant.id})" class="btn rounded-4xl btn-secondary bg-[#15803d]">Add to Cart</button>
                     </div>
