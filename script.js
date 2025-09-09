@@ -25,13 +25,33 @@ function createElementPlantContainer() {
             <img src="${plant.image}" alt="${plant.name}" class="w-full h-full">
           </div>
           <div class="flex flex-col h-full justify-between">
-            <h4 class="text-lg font-bold mt-2">${plant.name}</h4>
+
+            <a href="#my_modal_8" class="text-lg font-bold mt-2">${plant.name}</a>
+
+
+<div class="modal" role="dialog" id="my_modal_8">
+  <div class="modal-box">
+    <div class="modelHeight image-wrapper w-full rounded-lg h-[100%]">
+      <img src="${plant.image}" alt="${plant.name}" class="w-full h-[600px]">
+    </div>
+    <p class="flex flex-col h-full justify-between">
+      <p class="text-lg mt-2 text-[#000000]"><span class="font-bold">Category: </span>${plant.category}</p>
+      <p class="text-lg mt-2 text-[#000000]"><span class="font-bold">Price: </span>৳${plant.price}</p>
+      <p class="text-lg mt-2 text-[#000000]"><span class="font-bold">Description: </span>${plant.description}</p>
+    </p>
+    <div class="modal-action">
+      <a href="#" class="btn">Close</a>
+    </div>
+  </div>
+</div>
+
+
             <p class="text-sm mb-2">${plant.description}</p>
             <div class="flex justify-between mb-2">
-              <span class="text-[12px] bg-[#dcfce7] text-[#15803d] p-0.4 px-1.5 rounded-2xl">${plant.category}</span>
+              <span class="text-[12px] bg-[#dcfce7] text-[#000000] p-0.4 px-1.5 rounded-2xl">${plant.category}</span>
               <span class="text-[12px] font-bold">${plant.price}</span>            
             </div>
-            <button onClick="addToCart(${plant.id})" class="btn rounded-4xl btn-secondary bg-[#15803d]">Add to Cart</button>
+            <button onClick="ClickCart(${plant.id})" class="btn rounded-4xl btn-secondary bg-[#15803d]">Add to Cart</button>
           </div>
         `;
         cardContainer.appendChild(card);
@@ -84,7 +104,7 @@ loadData(categoriesApi).then((data) => {
                         <span class="text-[12px] bg-[#dcfce7] p-0.4 px-1.5 text-[#15803d] rounded-2xl">${plant.category}</span>
                         <span class="text-[12px] font-bold">${plant.price}</span>            
                       </div>
-                      <button  onClick="addToCart(${plant.id})" class="btn rounded-4xl btn-secondary bg-[#15803d]">Add to Cart</button>
+                      <button  onClick="ClickCart(${plant.id})" class="btn rounded-4xl btn-secondary bg-[#15803d]">Add to Cart</button>
                     </div>
                   `;
                   cardContainer.appendChild(card);
@@ -108,7 +128,8 @@ loadData(categoriesApi).then((data) => {
 
 
 
-function addToCart(plantId) {
+function ClickCart(plantId) {
+  alert("Banyan Tree has been added to the cart.");
   const cartItemsContainer = document.getElementById("cart-items");
   loadData(plantsApi).then((data) => {
     const plant = data.plants.find(p => p.id === plantId);
@@ -127,15 +148,25 @@ function addToCart(plantId) {
       <div class="flex justify-between items-center bg-[#f0fdf4] rounded-lg p-2 border border-[#d1fae5]">
         <div>
           <p>${plant.name}</p>
-          <p>৳${plant.price} x 1</p>
+          <p>৳<span>${plant.price}</span> x 1</p>
         </div>            
-        <div class="cursor-pointer" onClick="this.parentElement.parentElement.remove()">
+        <div class="cursor-pointer" onClick="clearSingleCart(this)">
           <i class="fa-solid fa-xmark"></i>
         </div>
       </div>
     `;
     cartItemsContainer.appendChild(cartItem);
   });
+}
+{/* <div class="cursor-pointer" onClick="this.parentElement.parentElement.remove()"></div> */}
+
+function clearSingleCart(e) {
+  e.parentElement.parentElement.remove();
+  // console.log(e.parentElement.childNodes[1].childNodes[3].childNodes[1].innerText);
+  const currentTotal = parseFloat(document.getElementById("total-price").innerText) || 0;
+  const priceNumber = parseFloat(e.parentElement.childNodes[1].childNodes[3].childNodes[1].innerText) || 0;
+  const newTotal = (currentTotal - priceNumber).toFixed();
+  document.getElementById("total-price").innerText = newTotal;
 }
 
 const allTrees = document.getElementById("all-trees");
