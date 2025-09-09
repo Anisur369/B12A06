@@ -1,3 +1,14 @@
+/*
+*Title: Plant Shop Web Application
+*Description: A simple plant shop web application using vanilla JavaScript and Tailwind CSS.
+*Author: Anisur Rahman 
+*Date: 09-sep-2025
+*Version: 1.0
+*Time: 11:00 AM
+*/
+
+
+//dependencies
 const plantsApi = "https://openapi.programming-hero.com/api/plants";
 const categoriesApi = "https://openapi.programming-hero.com/api/categories";
 const categoryList = document.getElementById("category-list");
@@ -162,7 +173,6 @@ function ClickCart(plantId) {
 
 function clearSingleCart(e) {
   e.parentElement.parentElement.remove();
-  // console.log(e.parentElement.childNodes[1].childNodes[3].childNodes[1].innerText);
   const currentTotal = parseFloat(document.getElementById("total-price").innerText) || 0;
   const priceNumber = parseFloat(e.parentElement.childNodes[1].childNodes[3].childNodes[1].innerText) || 0;
   const newTotal = (currentTotal - priceNumber).toFixed();
@@ -184,3 +194,6 @@ allTrees.addEventListener("click", () => {
 });
 
 
+// copyright by Anisur Rahman
+// github: https://github.com/Anisur369
+// facebook: https://www.facebook.com/MdAnisurRahman999
