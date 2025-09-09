@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+  font-family: "Roboto", sans-serif;
+}
+.hero-bg {
+  position: relative;
+}
+.hero-bg::before,
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: -1;
+}
+.hero-bg::before {
+  left: 0;
+  background-image: url('./assets/hero-leaf1.png');
+  background-position: left center;
+}
+.hero-bg::after {
+  right: 0;
+  background-image: url('./assets/hero-leaf2.png');
+  background-position: right center;
+}
+.image-wrapper {
+  width: 100%;
+  height: 150px;
+  position: relative;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.hero-overlay {
+  background-color: color-mix(in oklab,black 20%,transparent);
+  grid-row-start: 1;
+  grid-column-start: 1;
+  width: 100%;
+  height: 100%;
+  padding: 5rem;
+}
